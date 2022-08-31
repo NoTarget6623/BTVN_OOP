@@ -3,10 +3,6 @@
 
 class Worker : public Person{
 private :
-    string name;
-    int age;
-    string sex;
-    string hometown;
     int ID;
     int day;
 public :

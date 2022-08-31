@@ -3,10 +3,6 @@
 
 class Manager : public Person{
 private :
-    string name;
-    int age;
-    string sex;
-    string hometown;
     int factorSalary;
 public :
     Manager() : Person(){

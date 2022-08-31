@@ -2,7 +2,7 @@
 #include "main.h"
 
 class Person{
-private :
+protected :
     string name;
     int age;
     string sex;
