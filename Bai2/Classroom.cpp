@@ -23,3 +23,11 @@ void Classroom :: setTime(Time time){
 Time Classroom :: getTime(){
     return time;
 }
+
+void Classroom :: setRoom(Room room){
+    this->room = room;
+}
+
+Room Classroom :: getRoom(){
+    return room;
+}
