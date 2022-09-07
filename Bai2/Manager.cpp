@@ -22,6 +22,51 @@ void Manager :: AddTeacher(){
     teacher.push_back(Teacher(id,name,address,salary,subject));
 }
 
+void Manager :: EditInfoTeacher(){
+    int choice;
+    int id;
+    cout << "Teacher 's ID : \n"; cin >> id;
+    int position;
+    for(int i = 0;i < teacher.size();i++){
+        if(teacher[i].getID() == id){
+            position = i;
+            break;
+        }
+    }
+    cout << "Choose what you want to edit :\n";
+    cout << "1. Name\n";
+    cout << "2. Hometown\n";
+    cout << "3. Permarnet Address\n";
+    cout << "4. Salary\n";
+    cout << "5. Subject\n";
+    cout << "Choose : "; cin >> choice;cin.ignore();
+    if(choice == 1){
+        string name;
+        getline(cin,name);
+        teacher[position].setName(name);
+    }
+    else if(choice == 2){
+        string hometown;
+        getline(cin,hometown);
+        teacher[position].setAddress()
+    }
+    else if(choice == 2){
+        string name;
+        getline(cin,name);
+        teacher[position].se
+    }
+    else if(choice == 2){
+        string name;
+        getline(cin,name);
+        teacher[position].setName(name);
+    }
+    else if(choice == 2){
+        string name;
+        getline(cin,name);
+        teacher[position].setName(name);
+    }
+}
+
 void Manager :: AddStudent(){
     int id;
     string name;

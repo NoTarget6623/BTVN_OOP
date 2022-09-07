@@ -22,7 +22,7 @@ int main(){
         int option;
         cin >> option;cin.ignore();
         cout << "\n";
-        if(option > 9){
+        if(option > 9 || option < 1){
             cout << "Wrong!!! You can enter again.";
         }
         else if(option == 9){

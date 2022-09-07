@@ -3,6 +3,7 @@
 
 class Teacher : public Person{
 private :
+    int NUM_TEACHER;
     int salary;
     string subject;
 public :

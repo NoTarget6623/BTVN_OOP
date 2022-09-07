@@ -12,6 +12,7 @@ private :
     vector <Room> room;
 public :
     void AddTeacher();
+    void EditInfoTeacher();
     void AddStudent();
     void AddClassroom();
     void AddRoom();
