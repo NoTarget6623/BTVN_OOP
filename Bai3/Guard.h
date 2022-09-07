@@ -5,6 +5,7 @@ class Guard : public Person{
 private :
     string area;
 public :
+    static int numGuard;
     Guard();
     Guard(string name,int age,string sex,string phoneNumber,string address,string homeTown,string id,double factorSalary,int dayWorking,string area);
     void setArea(string area);

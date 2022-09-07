@@ -1,5 +1,9 @@
 #include "Manager.h"
 
+int Worker :: numWorker = 0;
+int Guard :: numGuard = 0;
+int Engineer :: numEngineer = 0;
+
 string name;
 int age;
 string sex;
@@ -59,7 +63,7 @@ void Manager :: AddNewWorker(){
     AddNew();
     int level;
     cout << "Level : "; cin >> level; cin.ignore();
-    worker.push_back(Worker(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(worker.size() + 1,1),factorSalary,dayWorking,level));
+    worker.push_back(Worker(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Worker :: numWorker,1),factorSalary,dayWorking,level));
 }   
 
 void Manager :: AddNewGuard(){
@@ -85,7 +89,7 @@ void Manager :: AddNewGuard(){
             return;
         }
     }
-    guard.push_back(Guard(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(guard.size() + 1,2),factorSalary,dayWorking,area));
+    guard.push_back(Guard(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Guard :: numGuard,2),factorSalary,dayWorking,area));
 }
 
 void Manager :: AddNewEngineer(){
@@ -94,7 +98,7 @@ void Manager :: AddNewEngineer(){
     string trainingMajor;
     cout << "Experience Years : "; cin >> experienceYear; cin.ignore();
     cout << "Training Major : "; getline(cin,trainingMajor);
-    engineer.push_back(Engineer(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(engineer.size() + 1,3),factorSalary,dayWorking,experienceYear,trainingMajor));
+    engineer.push_back(Engineer(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Engineer :: numEngineer,3),factorSalary,dayWorking,experienceYear,trainingMajor));
 }
 
 void Manager :: ShowInforAWorker(int position){
