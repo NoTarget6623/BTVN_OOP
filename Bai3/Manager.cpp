@@ -1,5 +1,37 @@
 #include "Manager.h"
 
+string name;
+int age;
+string sex;
+string phoneNumber;
+string address;
+string homeTown;
+double factorSalary;
+int dayWorking;
+
+template <class T>
+void ShowInfor(vector <T> tmp,int position){
+    cout << "ID : " << tmp[position].getID() << "\n";
+    cout << "Name : " << tmp[position].getName() << "\n";
+    cout << "Age : " << tmp[position].getAge() << "\n";
+    cout << "Sex : " << tmp[position].getSex() << "\n";
+    cout << "Phone Number : " << tmp[position].getPhoneNumber() << "\n";
+    cout << "Address : " << tmp[position].getAddress() << "\n";
+    cout << "Hometown : " << tmp[position].getHomeTown() << "\n";
+    cout << "Factor Salary : " << tmp[position].getFactorSalary() << "\n";
+    cout << "Day Working : " << tmp[position].getDayWorking() << "\n";
+} 
+
+template <class T>
+int FindPositionByName(vector <T> tmp,string name){
+    for(int i = 0;i < tmp.size();i++){
+        if(tmp[i].getName() == name){
+            return i;
+        }
+    }
+    return -1;
+}
+
 string Manager :: CreateID(int serial, int classify){
     string id;
     if(classify == 1) id = "CN";
@@ -12,15 +44,7 @@ string Manager :: CreateID(int serial, int classify){
     return id;
 }
 
-void Manager :: AddNewWorker(){
-    string name;
-    int age;
-    string sex;
-    string phoneNumber;
-    string address;
-    string homeTown;
-    double factorSalary;
-    int dayWorking;
+void AddNew(){
     cout << "Name : "; getline(cin,name);
     cout << "Age : "; cin >> age;cin.ignore();
     cout << "Sex : "; getline(cin,sex);
@@ -29,28 +53,17 @@ void Manager :: AddNewWorker(){
     cout << "Hometown : "; getline(cin,homeTown);
     cout << "Factor Salary : "; cin >> factorSalary; cin.ignore();
     cout << "Day Working : "; cin >> dayWorking; cin.ignore();
+}
+
+void Manager :: AddNewWorker(){
+    AddNew();
     int level;
     cout << "Level : "; cin >> level; cin.ignore();
     worker.push_back(Worker(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(worker.size() + 1,1),factorSalary,dayWorking,level));
 }   
 
 void Manager :: AddNewGuard(){
-    string name;
-    int age;
-    string sex;
-    string phoneNumber;
-    string address;
-    string homeTown;
-    double factorSalary;
-    int dayWorking;
-    cout << "Name : "; getline(cin,name);
-    cout << "Age : "; cin >> age;cin.ignore();
-    cout << "Sex : "; getline(cin,sex);
-    cout << "Phone Number : "; getline(cin,phoneNumber);
-    cout << "Address : "; getline(cin,address);
-    cout << "Hometown : "; getline(cin,homeTown);
-    cout << "Factor Salary : "; cin >> factorSalary; cin.ignore();
-    cout << "Day Working : "; cin >> dayWorking; cin.ignore();
+    AddNew();
     string area;
     cout << "Choose area working: \n";
     cout << "1. Storehouse\n";
@@ -59,9 +72,9 @@ void Manager :: AddNewGuard(){
     cout << "4. Dormitory\n";
     int count = 0;
     int choice = 0;
-    cout << "Choose : "; cin >> choice;cin.ignore();
     while(choice == 0){
         count++;
+        cout << "Choose : "; cin >> choice;cin.ignore();
         if(choice == 1) area = "Storehouse";
         else if(choice == 2) area = "Gate";
         else if(choice == 3) area = "Factory";
@@ -76,22 +89,7 @@ void Manager :: AddNewGuard(){
 }
 
 void Manager :: AddNewEngineer(){
-    string name;
-    int age;
-    string sex;
-    string phoneNumber;
-    string address;
-    string homeTown;
-    double factorSalary;
-    int dayWorking;
-    cout << "Name : "; getline(cin,name);
-    cout << "Age : "; cin >> age;cin.ignore();
-    cout << "Sex : "; getline(cin,sex);
-    cout << "Phone Number : "; getline(cin,phoneNumber);
-    cout << "Address : "; getline(cin,address);
-    cout << "Hometown : "; getline(cin,homeTown);
-    cout << "Factor Salary : "; cin >> factorSalary; cin.ignore();
-    cout << "Day Working : "; cin >> dayWorking; cin.ignore();
+    AddNew();
     int experienceYear;
     string trainingMajor;
     cout << "Experience Years : "; cin >> experienceYear; cin.ignore();
@@ -100,41 +98,17 @@ void Manager :: AddNewEngineer(){
 }
 
 void Manager :: ShowInforAWorker(int position){
-    cout << "ID : " << worker[position].getID() << "\n";
-    cout << "Name : " << worker[position].getName() << "\n";
-    cout << "Age : " << worker[position].getAge() << "\n";
-    cout << "Sex : " << worker[position].getSex() << "\n";
-    cout << "Phone Number : " << worker[position].getPhoneNumber() << "\n";
-    cout << "Address : " << worker[position].getAddress() << "\n";
-    cout << "Hometown : " << worker[position].getHomeTown() << "\n";
-    cout << "Factor Salary : " << worker[position].getFactorSalary() << "\n";
-    cout << "Day Working : " << worker[position].getDayWorking() << "\n";
+    ShowInfor(worker,position);
     cout << "Level : " << worker[position].getLevel() << "\n";
 }
 
 void Manager :: ShowInforAGuard(int position){
-    cout << "ID : " << guard[position].getID() << "\n";
-    cout << "Name : " << guard[position].getName() << "\n";
-    cout << "Age : " << guard[position].getAge() << "\n";
-    cout << "Sex : " << guard[position].getSex() << "\n";
-    cout << "Phone Number : " << guard[position].getPhoneNumber() << "\n";
-    cout << "Address : " << guard[position].getAddress() << "\n";
-    cout << "Hometown : " << guard[position].getHomeTown() << "\n";
-    cout << "Factor Salary : " << guard[position].getFactorSalary() << "\n";
-    cout << "Day Working : " << guard[position].getDayWorking() << "\n";
+    ShowInfor(guard,position);
     cout << "Area : " << guard[position].getArea() << "\n";
 }
 
 void Manager :: ShowInforAEngineer(int position){
-    cout << "ID : " << engineer[position].getID() << "\n";
-    cout << "Name : " << engineer[position].getName() << "\n";
-    cout << "Age : " << engineer[position].getAge() << "\n";
-    cout << "Sex : " << engineer[position].getSex() << "\n";
-    cout << "Phone Number : " << engineer[position].getPhoneNumber() << "\n";
-    cout << "Address : " << engineer[position].getAddress() << "\n";
-    cout << "Hometown : " << engineer[position].getHomeTown() << "\n";
-    cout << "Factor Salary : " << engineer[position].getFactorSalary() << "\n";
-    cout << "Day Working : " << engineer[position].getDayWorking() << "\n";
+    ShowInfor(engineer,position);
     cout << "Experience Years : " << engineer[position].getExperienceYear() << "\n";
     cout << "Training Major : " << engineer[position].getTrainingMajor() << "\n";
 }
@@ -145,14 +119,14 @@ void Manager :: FindInforByName(){
     int position;
     int classify = 0;
     int temp;
-    temp = FindInforWorker(name);
+    temp = FindPositionByName(worker,name);
     if(temp != -1) classify = 1,position = temp;
     else{
-        temp = FindInforGuard(name);
+        temp = FindPositionByName(guard,name);
         if(temp != -1) classify = 2,position = temp;
         else {
-            temp = FindInforEngineer(name);
-            if(temp != -1) classify = 2,position = temp;
+            temp = FindPositionByName(engineer,name);
+            if(temp != -1) classify = 3,position = temp;
         }
     }
     if(classify == 0) cout << "Name does not exist\n";
@@ -161,47 +135,20 @@ void Manager :: FindInforByName(){
     else if(classify == 3) ShowInforAEngineer(position);
 }
 
-int Manager ::FindInforWorker(string name){
-    for(int i = 0;i < worker.size();i++){
-        if(worker[i].getName() == name){
-            return i;
-        }
-    }
-    return -1;
-}
-
-int Manager ::FindInforGuard(string name){
-    for(int i = 0;i < guard.size();i++){
-        if(guard[i].getName() == name){
-            return i;
-        }
-    }
-    return -1;
-}
-
-int Manager ::FindInforEngineer(string name){
-    for(int i = 0;i < engineer.size();i++){
-        if(engineer[i].getName() == name){
-            return i;
-        }
-    }
-    return -1;
-}
-
 void Manager :: CalcSalaryByName(){
     string name;
     cout << "Choose name you want to find : "; getline(cin,name);
     int position;
     int classify = 0;
     int temp;
-    temp = FindInforWorker(name);
+    temp = FindPositionByName(worker,name);
     if(temp != -1) classify = 1,position = temp;
     else{
-        temp = FindInforGuard(name);
+        temp = FindPositionByName(guard,name);
         if(temp != -1) classify = 2,position = temp;
         else {
-            temp = FindInforEngineer(name);
-            if(temp != -1) classify = 2,position = temp;
+            temp = FindPositionByName(engineer,name);
+            if(temp != -1) classify = 3,position = temp;
         }
     }
     if(classify == 0) cout << "Name does not exist\n";

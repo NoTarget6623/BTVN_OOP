@@ -3,8 +3,8 @@
 int main(){
     Manager ProPTIT;
     while(true){
-        cout << "MENU\n";
-        cout << "===============================\n";
+        cout << "            MENU\n";
+        cout << "===========================\n";
         cout << "1. Add new worker\n";
         cout << "2. Add new guard\n";
         cout << "3. Add new engineer\n";
@@ -22,4 +22,5 @@ int main(){
         else if(choice == 6) break;
         else cout << "Wrong ! You can choose again !\n";
     }
+    return 0;
 }
