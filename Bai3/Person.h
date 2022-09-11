@@ -46,4 +46,5 @@ public :
     string getID();
     double getFactorSalary();
     int getDayWorking();
+    void ShowInfor();
 };

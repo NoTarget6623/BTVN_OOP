@@ -95,3 +95,15 @@ double Person :: getFactorSalary(){
 int Person :: getDayWorking(){
     return dayWorking;
 }
+
+void Person :: ShowInfor(){
+    cout << "ID : " << this->id << "\n";
+    cout << "Name : " << this->name << "\n";
+    cout << "Age : " <<this->age << "\n";
+    cout << "Sex : " << this->sex << "\n";
+    cout << "Phone Number : " << this->phoneNumber << "\n";
+    cout << "Address : " << this->address << "\n";
+    cout << "Hometown : " << this->homeTown << "\n";
+    cout << "Factor Salary : " << this->factorSalary << "\n";
+    cout << "Day Working : " << this->dayWorking << "\n";
+}

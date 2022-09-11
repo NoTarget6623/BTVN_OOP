@@ -5,9 +5,9 @@
 
 class Manager{
 private :
-    vector <Worker> worker;
-    vector <Guard> guard;
-    vector <Engineer> engineer;
+    vector <Worker> workers;
+    vector <Guard> guards;
+    vector <Engineer> engineers;
 public :
     string CreateID(int serial, int classify);
     void AddNewWorker();

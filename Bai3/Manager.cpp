@@ -14,19 +14,6 @@ double factorSalary;
 int dayWorking;
 
 template <class T>
-void ShowInfor(vector <T> tmp,int position){
-    cout << "ID : " << tmp[position].getID() << "\n";
-    cout << "Name : " << tmp[position].getName() << "\n";
-    cout << "Age : " << tmp[position].getAge() << "\n";
-    cout << "Sex : " << tmp[position].getSex() << "\n";
-    cout << "Phone Number : " << tmp[position].getPhoneNumber() << "\n";
-    cout << "Address : " << tmp[position].getAddress() << "\n";
-    cout << "Hometown : " << tmp[position].getHomeTown() << "\n";
-    cout << "Factor Salary : " << tmp[position].getFactorSalary() << "\n";
-    cout << "Day Working : " << tmp[position].getDayWorking() << "\n";
-} 
-
-template <class T>
 int FindPositionByName(vector <T> tmp,string name){
     for(int i = 0;i < tmp.size();i++){
         if(tmp[i].getName() == name){
@@ -63,7 +50,7 @@ void Manager :: AddNewWorker(){
     AddNew();
     int level;
     cout << "Level : "; cin >> level; cin.ignore();
-    worker.push_back(Worker(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Worker :: numWorker,1),factorSalary,dayWorking,level));
+    workers.push_back(Worker(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Worker :: numWorker,1),factorSalary,dayWorking,level));
 }   
 
 void Manager :: AddNewGuard(){
@@ -89,7 +76,7 @@ void Manager :: AddNewGuard(){
             return;
         }
     }
-    guard.push_back(Guard(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Guard :: numGuard,2),factorSalary,dayWorking,area));
+    guards.push_back(Guard(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Guard :: numGuard,2),factorSalary,dayWorking,area));
 }
 
 void Manager :: AddNewEngineer(){
@@ -98,23 +85,23 @@ void Manager :: AddNewEngineer(){
     string trainingMajor;
     cout << "Experience Years : "; cin >> experienceYear; cin.ignore();
     cout << "Training Major : "; getline(cin,trainingMajor);
-    engineer.push_back(Engineer(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Engineer :: numEngineer,3),factorSalary,dayWorking,experienceYear,trainingMajor));
+    engineers.push_back(Engineer(name,age,sex,phoneNumber,address,homeTown,Manager :: CreateID(++Engineer :: numEngineer,3),factorSalary,dayWorking,experienceYear,trainingMajor));
 }
 
 void Manager :: ShowInforAWorker(int position){
-    ShowInfor(worker,position);
-    cout << "Level : " << worker[position].getLevel() << "\n";
+    workers[position].ShowInfor();
+    cout << "Level : " << workers[position].getLevel() << "\n";
 }
 
 void Manager :: ShowInforAGuard(int position){
-    ShowInfor(guard,position);
-    cout << "Area : " << guard[position].getArea() << "\n";
+    guards[position].ShowInfor();
+    cout << "Area : " << guards[position].getArea() << "\n";
 }
 
 void Manager :: ShowInforAEngineer(int position){
-    ShowInfor(engineer,position);
-    cout << "Experience Years : " << engineer[position].getExperienceYear() << "\n";
-    cout << "Training Major : " << engineer[position].getTrainingMajor() << "\n";
+    engineers[position].ShowInfor();
+    cout << "Experience Years : " << engineers[position].getExperienceYear() << "\n";
+    cout << "Training Major : " << engineers[position].getTrainingMajor() << "\n";
 }
 
 void Manager :: FindInforByName(){
@@ -123,13 +110,13 @@ void Manager :: FindInforByName(){
     int position;
     int classify = 0;
     int temp;
-    temp = FindPositionByName(worker,name);
+    temp = FindPositionByName(workers,name);
     if(temp != -1) classify = 1,position = temp;
     else{
-        temp = FindPositionByName(guard,name);
+        temp = FindPositionByName(guards,name);
         if(temp != -1) classify = 2,position = temp;
         else {
-            temp = FindPositionByName(engineer,name);
+            temp = FindPositionByName(engineers,name);
             if(temp != -1) classify = 3,position = temp;
         }
     }
@@ -145,18 +132,18 @@ void Manager :: CalcSalaryByName(){
     int position;
     int classify = 0;
     int temp;
-    temp = FindPositionByName(worker,name);
+    temp = FindPositionByName(workers,name);
     if(temp != -1) classify = 1,position = temp;
     else{
-        temp = FindPositionByName(guard,name);
+        temp = FindPositionByName(guards,name);
         if(temp != -1) classify = 2,position = temp;
         else {
-            temp = FindPositionByName(engineer,name);
+            temp = FindPositionByName(engineers,name);
             if(temp != -1) classify = 3,position = temp;
         }
     }
     if(classify == 0) cout << "Name does not exist\n";
-    else if(classify == 1) cout << worker[position].CalcSalary();
-    else if(classify == 2) cout << guard[position].CalcSalary();
-    else if(classify == 3) cout << engineer[position].CalcSalary();
+    else if(classify == 1) cout << workers[position].CalcSalary() << "\n";
+    else if(classify == 2) cout << guards[position].CalcSalary() << "\n";
+    else if(classify == 3) cout << engineers[position].CalcSalary() << "\n";
 }
