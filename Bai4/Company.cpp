@@ -101,7 +101,7 @@ Employee* Company::FindEmployeeByID(string id) {
 }
 
 void Company::EditInforEmployee()
-{	
+{
 	cout << "Import employee 's ID you want to edit : ";
 	string id;
 	getline(cin, id);

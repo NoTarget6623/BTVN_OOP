@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  Company.cpp
+D:\OOP\Bai4\Company.cpp(63,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Employee.cpp
+  main.cpp
+  OfficeEmployee.cpp
+  ProductionEmployee.cpp
+  Generating Code...
   Bai4.vcxproj -> D:\OOP\Bai4\x64\Debug\Bai4.exe

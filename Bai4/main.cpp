@@ -1,6 +1,6 @@
 #include "Company.h"
 
-Company company;
+Company* company;
 
 void GetMenu() {
 	system("cls");
@@ -22,27 +22,28 @@ int main() {
 		switch (choice)
 		{
 		case 1:
-			company.AddNewEmployee();
+			company->AddNewEmployee();
 			//system("pause");
 			break;
 		case 2:
-			company.ShowInforAllEmployees();
+			company->ShowInforAllEmployees();
 			system("pause");
 			break;
 		case 3:
-			company.EditInforEmployee();
+			company->EditInforEmployee();
 			system("pause");
 			break;
 		case 4:
-			company.CalculateSalaryEmployee();
+			company->CalculateSalaryEmployee();
 			system("pause");
 			break;
 		case 5:
-			company.SumSalaryAllEmployees();
+			company->SumSalaryAllEmployees();
 			system("pause");
 			break;
 		case 6:
 			cout << "See you again !\n";
+			delete(company);
 			system("pause");
 			exit(0);
 			break;
