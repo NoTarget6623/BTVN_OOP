@@ -3,9 +3,9 @@
 #include "ProductionEmployee.h"
 
 class Company {
-private :
+private:
 	vector <Employee*> employees;
-public :
+public:
 	Company();
 	~Company();
 	void AddNewEmployee();
