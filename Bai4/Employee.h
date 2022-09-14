@@ -20,5 +20,4 @@ public:
 	void setID(string id);
 	string getID();
 	virtual double getSalary();
-	void getTime();
 };
