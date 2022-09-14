@@ -1,12 +1,10 @@
 #include "Company.h"
 
-Company::Company()
-{
+Company::Company() {
 
 }
 
-Company::~Company()
-{
+Company::~Company() {
 	for (Employee* employee : employees) {
 		if (employee != nullptr) {
 			delete employee;
@@ -15,8 +13,7 @@ Company::~Company()
 	employees.clear();
 }
 
-void Company::AddNewEmployee()
-{
+void Company::AddNewEmployee() {
 	int job;
 	cout << "Choose job what you want to add : \n";
 	cout << "1. Office Employee \n";
@@ -29,8 +26,7 @@ void Company::AddNewEmployee()
 	Employee* employee = new Employee();
 	string name;
 	cout << "Name : "; getline(cin, name);
-	switch (job)
-	{
+	switch (job) {
 	case 1:
 		double basicSalary;
 		int dayWorking;
@@ -51,8 +47,7 @@ void Company::AddNewEmployee()
 	this->employees.push_back(employee);
 }
 
-void Company::ShowInforAllEmployees()
-{
+void Company::ShowInforAllEmployees() {
 	if (employees.size() == 0) {
 		cout << "Don't have employee in company\n";
 		return;
@@ -73,15 +68,13 @@ void Company::ShowInforAllEmployees()
 	for (Employee* employee : employees) {
 		cout << "| " << left << setw(7) << employee->getID() << "|"
 			<< " " << left << setw(width + 2) << employee->getName() << "|";
-		if (employee->getID().substr(0, 2) == "VP")
-		{
+		if (employee->getID().substr(0, 2) == "VP") {
 			cout << " " << left << setw(13) << ((OfficeEmployee*)employee)->getBasicSalary() << "|"
 				<< " " << left << setw(12) << ((OfficeEmployee*)employee)->getDayWorking() << "|"
 				<< " " << left << setw(19) << 0 << "|"
 				<< " " << left << setw(19) << 0 << "|";
 		}
-		else if (employee->getID().substr(0, 2) == "SX")
-		{
+		else if (employee->getID().substr(0, 2) == "SX") {
 			cout << " " << left << setw(13) << 0 << "|"
 				<< " " << left << setw(12) << 0 << "|"
 				<< " " << left << setw(19) << ((ProductionEmployee*)employee)->getNumProduct() << "|"
@@ -100,8 +93,7 @@ Employee* Company::FindEmployeeByID(string id) {
 	return nullptr;
 }
 
-void Company::EditInforEmployee()
-{
+void Company::EditInforEmployee() {
 	cout << "Import employee 's ID you want to edit : ";
 	string id;
 	getline(cin, id);
@@ -110,12 +102,10 @@ void Company::EditInforEmployee()
 	else {
 		cout << "Choose what you want to edit :\n";
 		cout << "1. Name\n";
-		if (employee->getID().substr(0, 2) == "VP")
-		{
+		if (employee->getID().substr(0, 2) == "VP") {
 			cout << "2. Basic Salary\n";
 		}
-		else if (employee->getID().substr(0, 2) == "SX")
-		{
+		else if (employee->getID().substr(0, 2) == "SX") {
 			cout << "2. Price of a product\n";
 		}
 		string name;
@@ -123,22 +113,19 @@ void Company::EditInforEmployee()
 		int choice;
 		cout << "Choose : ";
 		cin >> choice; cin.ignore();
-		switch (choice)
-		{
+		switch (choice) {
 		case 1:
 			cout << "Import new name : ";
 			getline(cin, name);
 			employee->setName(name);
 			break;
 		case 2:
-			if (employee->getID().substr(0, 2) == "VP")
-			{
+			if (employee->getID().substr(0, 2) == "VP") {
 				cout << "Import new basic salary : ";
 				cin >> basicSalary; cin.ignore();
 				((OfficeEmployee*)employee)->setBasicSalary(basicSalary);
 			}
-			else if (employee->getID().substr(0, 2) == "SX")
-			{
+			else if (employee->getID().substr(0, 2) == "SX") {
 				cout << "Import new price of a product : ";
 				cin >> priceOfProduct; cin.ignore();
 				((ProductionEmployee*)employee)->setPriceOfProduct(priceOfProduct);
@@ -151,8 +138,7 @@ void Company::EditInforEmployee()
 	}
 }
 
-void Company::CalculateSalaryEmployee()
-{
+void Company::CalculateSalaryEmployee() {
 	cout << "Import employee 's ID you want to edit : ";
 	string id;
 	getline(cin, id);
@@ -163,8 +149,7 @@ void Company::CalculateSalaryEmployee()
 	}
 }
 
-void Company::SumSalaryAllEmployees()
-{
+void Company::SumSalaryAllEmployees() {
 	double SumSalary = 0;
 	for (Employee* employee : employees) {
 		SumSalary += employee->getSalary();

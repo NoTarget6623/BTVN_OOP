@@ -19,8 +19,7 @@ int main() {
 		GetMenu();
 		int choice;
 		cin >> choice; cin.ignore();
-		switch (choice)
-		{
+		switch (choice) {
 		case 1:
 			company->AddNewEmployee();
 			//system("pause");

@@ -2,14 +2,12 @@
 
 int ProductionEmployee::NUM_PRODUCTION_EMPLOYEE = 0;
 
-ProductionEmployee::ProductionEmployee() : Employee()
-{
+ProductionEmployee::ProductionEmployee() : Employee() {
 	this->numProduct = 0;
 	this->priceOfProduct = 0.0;
 }
 
-ProductionEmployee::ProductionEmployee(string name, int numProDuct, double priceOfProduct) : Employee(name)
-{
+ProductionEmployee::ProductionEmployee(string name, int numProDuct, double priceOfProduct) : Employee(name) {
 	this->numProduct = numProDuct;
 	this->priceOfProduct = priceOfProduct;
 	string temp_ID = to_string(++NUM_PRODUCTION_EMPLOYEE);
@@ -18,28 +16,23 @@ ProductionEmployee::ProductionEmployee(string name, int numProDuct, double price
 	this->id = temp_ID;
 }
 
-void ProductionEmployee::setNumProduct(int numProduct)
-{
+void ProductionEmployee::setNumProduct(int numProduct) {
 	this->numProduct = numProduct;
 }
 
-int ProductionEmployee::getNumProduct()
-{
+int ProductionEmployee::getNumProduct() {
 	return numProduct;
 }
 
-void ProductionEmployee::setPriceOfProduct(double priceOfProduct)
-{
+void ProductionEmployee::setPriceOfProduct(double priceOfProduct) {
 	this->priceOfProduct = priceOfProduct;
 }
 
-double ProductionEmployee::getPriceOfProduct()
-{
+double ProductionEmployee::getPriceOfProduct() {
 	return priceOfProduct;
 }
 
-double ProductionEmployee::getSalary()
-{
+double ProductionEmployee::getSalary() {
 	return numProduct * priceOfProduct;
 }
 

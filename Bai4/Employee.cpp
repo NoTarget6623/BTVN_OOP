@@ -1,37 +1,30 @@
 #include "Employee.h"
 
-Employee::Employee()
-{
+Employee::Employee() {
 	this->name = "";
 	this->id = "";
 }
 
-Employee::Employee(string name)
-{
+Employee::Employee(string name) {
 	this->name = name;
 }
 
-void Employee::setName(string name)
-{
+void Employee::setName(string name) {
 	this->name = name;
 }
 
-string Employee::getName()
-{
+string Employee::getName() {
 	return name;
 }
 
-void Employee::setID(string id)
-{
+void Employee::setID(string id) {
 	this->id = id;
 }
 
-string Employee::getID()
-{
+string Employee::getID() {
 	return id;
 }
 
-double Employee::getSalary()
-{
+double Employee::getSalary() {
 	return 0.0;
 }
