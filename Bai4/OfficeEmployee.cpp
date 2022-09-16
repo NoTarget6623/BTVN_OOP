@@ -7,6 +7,15 @@ OfficeEmployee::OfficeEmployee() : Employee() {
 	this->dayWorking = 0;
 }
 
+OfficeEmployee::OfficeEmployee(double basicSalary, int dayWorking) {
+	this->basicSalary = basicSalary;
+	this->dayWorking = dayWorking;
+	string temp_ID = to_string(++NUM_OFFICE_EMPLOYEE);
+	while (temp_ID.length() < 3) temp_ID = "0" + temp_ID;
+	temp_ID = "VP" + temp_ID;
+	this->id = temp_ID;
+}
+
 OfficeEmployee::OfficeEmployee(string name, double basicSalary, int dayWorking) : Employee(name) {
 	this->basicSalary = basicSalary;
 	this->dayWorking = dayWorking;
@@ -24,7 +33,7 @@ double OfficeEmployee::getBasicSalary() {
 	return basicSalary;
 }
 
-void OfficeEmployee::setDayWorking() {
+void OfficeEmployee::setDayWorking(int dayWorking) {
 	this->dayWorking = dayWorking;
 }
 

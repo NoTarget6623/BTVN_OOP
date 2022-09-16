@@ -80,57 +80,81 @@ void Company::ShowInforAllEmployees() {
 				<< " " << left << setw(19) << ((ProductionEmployee*)employee)->getNumProduct() << "|"
 				<< " " << left << setw(19) << ((ProductionEmployee*)employee)->getPriceOfProduct() << "|";
 		}
-		cout << " " << setw(10) << (long long)employee->getSalary() << "|\n";
+		cout << " " << left << setw(10) << (long long)employee->getSalary() << "|\n";
 	}
 }
 
-Employee* Company::FindEmployeeByID(string id) {
-	for (Employee* employee : employees) {
-		if (employee->getID() == id) {
-			return employee;
+int Company::FindEmployeeByID(string id) {
+	for (int i = 0; i < employees.size(); i++) {
+		if (employees[i]->getID() == id) {
+			return i;
 		}
 	}
-	return nullptr;
+	return -1;
 }
 
 void Company::EditInforEmployee() {
 	cout << "Import employee 's ID you want to edit : ";
 	string id;
 	getline(cin, id);
-	Employee* employee = Company::FindEmployeeByID(id);
-	if (employee == nullptr) cout << "ID does not exist\n";
+	int pos = Company::FindEmployeeByID(id);
+	if (pos == -1) cout << "ID does not exist\n";
 	else {
 		cout << "Choose what you want to edit :\n";
-		cout << "1. Name\n";
-		if (employee->getID().substr(0, 2) == "VP") {
-			cout << "2. Basic Salary\n";
+		cout << "1. Position\n";
+		cout << "2. Name\n";
+		if (employees[pos]->getID().substr(0, 2) == "VP") {
+			cout << "3. Basic Salary\n";
+			cout << "4. Day Working\n";
 		}
-		else if (employee->getID().substr(0, 2) == "SX") {
-			cout << "2. Price of a product\n";
+		else if (employees[pos]->getID().substr(0, 2) == "SX") {
+			cout << "3. Price of a product\n";
+			cout << "4. Number of products\n";
 		}
 		string name;
 		double basicSalary, priceOfProduct;
+		int numProduct, dayWorking;
 		int choice;
 		cout << "Choose : ";
 		cin >> choice; cin.ignore();
 		switch (choice) {
 		case 1:
-			cout << "Import new name : ";
-			getline(cin, name);
-			employee->setName(name);
-			break;
-		case 2:
-			if (employee->getID().substr(0, 2) == "VP") {
-				cout << "Import new basic salary : ";
-				cin >> basicSalary; cin.ignore();
-				((OfficeEmployee*)employee)->setBasicSalary(basicSalary);
+			if (employees[pos]->getID().substr(0, 2) == "SX") {
+				string temp_ID = to_string(++OfficeEmployee::NUM_OFFICE_EMPLOYEE);
+				while (temp_ID.length() < 3) temp_ID = "0" + temp_ID;
+				employees[pos]->setID("VP" + temp_ID);
+				cout << "Import new information :\n";
+				cout << "Basic Salary : "; cin >> basicSalary; cin.ignore();
+				cout << "Day Working : "; cin >> dayWorking; cin.ignore();
+				employees[pos] = new OfficeEmployee(basicSalary, dayWorking);
 			}
-			else if (employee->getID().substr(0, 2) == "SX") {
-				cout << "Import new price of a product : ";
-				cin >> priceOfProduct; cin.ignore();
-				((ProductionEmployee*)employee)->setPriceOfProduct(priceOfProduct);
+			else if (employees[pos]->getID().substr(0, 2) == "VP") {
+				string temp_ID = to_string(++ProductionEmployee::NUM_PRODUCTION_EMPLOYEE);
+				while (temp_ID.length() < 3) temp_ID = "0" + temp_ID;
+				employees[pos]->setID("SX" + temp_ID);
+				cout << "Import new information :\n";
+				cout << "Number of products : "; cin >> numProduct; cin.ignore();
+				cout << "Price of a product : "; cin >> priceOfProduct; cin.ignore();
+				employees[pos] = new ProductionEmployee(numProduct, priceOfProduct);
 			}
 			break;
+			/*case 2:
+				cout << "Import new name : ";
+				getline(cin, name);
+				employee->setName(name);
+				break;
+			case 3:
+				if (employee->getID().substr(0, 2) == "VP") {
+					cout << "Import new basic salary : ";
+					cin >> basicSalary; cin.ignore();
+					((OfficeEmployee*)employee)->setBasicSalary(basicSalary);
+				}
+				else if (employee->getID().substr(0, 2) == "SX") {
+					cout << "Import new price of a product : ";
+					cin >> priceOfProduct; cin.ignore();
+					((ProductionEmployee*)employee)->setPriceOfProduct(priceOfProduct);
+				}
+				break;*/
 		default:
 			cout << "Wrong ! See you again !\n";
 			break;
@@ -142,10 +166,10 @@ void Company::CalculateSalaryEmployee() {
 	cout << "Import employee 's ID you want to edit : ";
 	string id;
 	getline(cin, id);
-	Employee* employee = Company::FindEmployeeByID(id);
-	if (employee == nullptr) cout << "ID does not exist\n";
+	int pos = Company::FindEmployeeByID(id);
+	if (pos == -1) cout << "ID does not exist\n";
 	else {
-		cout << employee->getSalary() << "\n";
+		cout << employees[pos]->getSalary() << "\n";
 	}
 }
 
